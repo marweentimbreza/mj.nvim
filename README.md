@@ -9,5 +9,5 @@ This is my very own **Neovim** configuration, it only has the basics and will co
 
 
 ```
-git clone https://github.com/marweentimbreza/mj.nvim
+git clone https://github.com/marweentimbreza/mj.nvim ~/.config/nvim
 ```
