@@ -1,2 +1,1 @@
-require("mj.lazy")
-require("mj.remap")
+require("mj.config")
