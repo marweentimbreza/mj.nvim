@@ -1,4 +1,3 @@
--- TODO This is a todo test commment 
 return {
     "mbbill/undotree",
     lazy = false,

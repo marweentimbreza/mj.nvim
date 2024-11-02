@@ -1,4 +1,4 @@
-local mason = {
+return {
 	"williamboman/mason.nvim",
 	cmd = "Mason",
 	event = "BufReadPre",
@@ -10,30 +10,18 @@ local mason = {
 				package_uninstalled = "✗",
 			},
 		},
-	},
-}
-
-local mason_lspconfig = {
-	"williamboman/mason-lspconfig.nvim",
-	opts = {
-		ensure_installed = {
-			"efm",
-			"bashls",
-			"ts_ls",
-			"tailwindcss",
-			"pyright",
-			"lua_ls",
-			"emmet_ls",
-			"jsonls",
-			"clangd",
+            ensure_installed = {
+			    "efm",
+			    "bashls",
+			    "pyright",
+			    "lua_ls",
+			    "emmet_ls",
+			    "jsonls",
+			    "clangd",
 		},
 		automatic_installation = true,
 	},
-	event = "BufReadPre",
-	dependencies = "williamboman/mason.nvim",
-}
 
-return {
-	mason,
-	mason_lspconfig,
+
+
 }

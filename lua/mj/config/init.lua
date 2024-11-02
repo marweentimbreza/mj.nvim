@@ -1,14 +1,22 @@
 require("mj.config.options")
-require("mj.config.keymap")
+require("mj.config.keymaps")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.keymap.set("n", "<leader>f", ":NvimTreeToggle<CR>", { noremap = true, silent = true})
+-- pane navigation 
+vim.keymap.set("n", "<leader>E", ":NvimTreeToggle<CR>", { noremap = true, silent = true})
 vim.keymap.set("n", "<leader>fm", ":NvimTreeFocus<CR>", { noremap = true, silent = true})
 
 
--- Bootstrap lazy.nvim
+-- highlight on yank
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -25,64 +33,39 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local opts = {
-	defaults = {
-		lazy = true,
-		version = "*"
-	},
-	colorscheme = { "gruvbox "},
-    install = {
-        colorsheme = { "gruvbox" }
-    },
-    rtp ={
-        disabled_plugins = {
-            "gzip",
-            "matchit",
-            "matchparen",
-            "netrwPlugin",
-            "tarPlugin",
-            "tohtml",
-            "tutor",
-            "zipPlugin",
-        }
-    },
-	  ui = {
-    -- a number <1 is a percentage., >1 is a fixed size
-    size = { width = 0.8, height = 0.8 },
-    wrap = true, -- wrap the lines in the ui
-    -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
-    border = "none",
-    -- The backdrop opacity. 0 is fully opaque, 100 is fully transparent.
-    backdrop = 60,
-    title = nil, ---@type string only works when border is not "none"
-    title_pos = "center", ---@type "center" | "left" | "right"
-    -- Show pills on top of the Lazy window
-    pills = true, ---@type boolean
-    icons = {
-      cmd = " ",
-      config = "",
-      event = " ",
-      favorite = " ",
-      ft = " ",
-      init = " ",
-      import = " ",
-      keys = " ",
-      lazy = "󰒲 ",
-      loaded = "●",
-      not_loaded = "○",
-      plugin = " ",
-      runtime = " ",
-      require = "󰢱 ",
-      source = " ",
-      start = " ",
-      task = "✔ ",
-      list = {
-        "●",
-        "➜",
-        "★",
-        "‒",
-      },
+require("lazy").setup({
+  spec = {
+    -- import your plugins
+    { import = "mj.plugins" },
   },
-}
-}
-require("lazy").setup("mj.plugins",opts)
+  -- Configure any other settings here. See the documentation for more details.
+  -- colorscheme that will be used when installing plugins.
+  install = { colorscheme = { "gruvbox" } },
+  -- automatically check for plugin updates
+  checker = { enabled = true },
+}, {
+  -- Lazy.nvim configuration
+  change_detection = {
+    enabled = true,
+    notify = true, -- Set to true if you want notifications when updates are available
+  },
+  checker = {
+    enabled = true, -- Enable automatic update checking
+    frequency = 3600, -- Check for updates every hour (in seconds)
+  },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+  },
+})
+
+-- Auto command to run :Lazy sync on startup
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    -- Small delay to ensure everything is loaded
+    vim.defer_fn(function()
+      vim.cmd("Lazy sync")
+    end, 100)
+  end,
+})
