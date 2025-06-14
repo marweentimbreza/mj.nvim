@@ -25,6 +25,7 @@ require('lazy').setup {
     require 'plugins.neotree',
     require 'plugins.whichkey',
     require 'plugins.todo-comment',
+    require 'plugins.theme',
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
