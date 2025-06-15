@@ -16,7 +16,6 @@
 - **🔭 Powerful Fuzzy Finding:** Find files, text, and buffers instantly with Telescope.
 - **🌳 File Explorer:** A clean, minimal file tree with `nvim-tree`.
 - **💅 Code Formatting & Linting:** Automatic code formatting and quality checks on save.
-- **🎨 Beautiful UI:** A stunning, modern aesthetic powered by the Tokyo Night theme.
 
 ## ✅ Prerequisites
 
