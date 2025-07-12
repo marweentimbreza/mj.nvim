@@ -26,7 +26,6 @@ return{
           NL = '<NL> ',
           BS = '<BS> ',
           Space = '<Space> ',
-          Tab = '<Tab> ',
           F1 = '<F1>',
           F2 = '<F2>',
           F3 = '<F3>',
