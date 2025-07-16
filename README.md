@@ -24,6 +24,7 @@ Before you begin, ensure your system has the following dependencies installed. T
 ### 1. Neovim v0.10+
 
 This configuration requires **Neovim version 0.10 or newer**.
+
 - **To Install/Update:** Follow the [official Neovim installation steps](https://github.com/neovim/neovim/wiki/Installing-Neovim). The `AppImage` method is recommended for Linux users to get the latest stable version.
 
 ### 2. System Dependencies
@@ -33,10 +34,10 @@ These tools are required for plugins to function correctly.
 - **Core Build Tools:** `git`, `build-essential`, `cmake`, `unzip`
 - **Search Tools:** `ripgrep`, `fd-find`
 - **Language Runtimes:**
-    - **Node.js & `npm`**: For web development tools.
-    - **Python & `venv`**: For Python tools.
-    - **Go (`golang`)**: For Go development tools.
-    - **`luarocks`**: For Lua modules.
+  - **Node.js & `npm`**: For web development tools.
+  - **Python & `venv`**: For Python tools.
+  - **Go (`golang`)**: For Go development tools.
+  - **`luarocks`**: For Lua modules.
 - **Clipboard Tool:** `xclip`
 
 #### All-in-One Install Command (for Debian/Ubuntu)
@@ -47,9 +48,17 @@ sudo apt update
 sudo apt install git build-essential cmake unzip ripgrep fd-find xclip luarocks python3-venv golang-go
 ```
 
+#### For Arch
+
+```
+sudo pacman -Syu git base-devel cmake unzip ripgrep fd xclip python go yay
+yay -S luarocks
+```
+
 #### Node.js Installation (Recommended)
 
 Using `nvm` (Node Version Manager) is the best way to manage Node.js versions.
+
 ```bash
 # Install nvm
 curl -o- [https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh](https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh) | bash
@@ -76,18 +85,18 @@ The first time you launch `nvim`, `lazy.nvim` will automatically install all the
 
 Here are some of the essential keybindings to get you started:
 
-| Keybinding      | Action                           |
-|-----------------|----------------------------------|
-| `<leader> e`    | Toggle file explorer (NvimTree)  |
-| `<leader> ff`   | Find files (Telescope)           |
-| `<leader> fg`   | Grep text in project (Telescope) |
-| `<leader> fb`   | Find open buffers (Telescope)    |
-| `gd`            | Go to definition (LSP)           |
-| `K`             | Hover documentation (LSP)        |
-| `<leader> ca`   | Show code actions (LSP)          |
-
+| Keybinding    | Action                           |
+| ------------- | -------------------------------- |
+| `<leader> e`  | Toggle file explorer (NvimTree)  |
+| `<leader> ff` | Find files (Telescope)           |
+| `<leader> fg` | Grep text in project (Telescope) |
+| `<leader> fb` | Find open buffers (Telescope)    |
+| `gd`          | Go to definition (LSP)           |
+| `K`           | Hover documentation (LSP)        |
+| `<leader> ca` | Show code actions (LSP)          |
 
 ---
+
 <div align="center">
   <p>Made with ❤️ and lots of debugging.</p>
 </div>
