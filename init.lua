@@ -19,13 +19,17 @@ require('lazy').setup {
     require 'plugins.mason',
     require 'plugins.telescope',
     require 'plugins.treesitter',
-    require 'plugins.none-ls',
     require 'plugins.gitsigns',
     require 'plugins.autocomplete',
     require 'plugins.neotree',
     require 'plugins.whichkey',
     require 'plugins.todo-comment',
     require 'plugins.theme',
+    require 'plugins.auto-pairs',
+    require 'plugins.autocmp',
+    require 'plugins.none-ls',
+    require 'plugins.cmp',
+  require 'plugins.indent'
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
