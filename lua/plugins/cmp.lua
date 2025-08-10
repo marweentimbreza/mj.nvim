@@ -7,14 +7,14 @@ return {
       "hrsh7th/cmp-path",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets", -- Optional for snippets
+      "rafamadriz/friendly-snippets",
     },
     event = "InsertEnter",
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-      require("luasnip.loaders.from_vscode").lazy_load() -- Load snippets
-
+      require("luasnip.loaders.from_vscode").lazy_load()
+      
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -22,8 +22,7 @@ return {
           end,
         },
         completion = {
-          completeopt = "menu,menuone,noinsert",
-          autocomplete = { "Insert" }, -- Ensure automatic triggering
+          completeopt = "menu,menuone,noselect",
         },
         mapping = cmp.mapping.preset.insert({
           ["<Tab>"] = cmp.mapping(function(fallback)
@@ -44,7 +43,17 @@ return {
               fallback()
             end
           end, { "i", "s" }),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<CR>"] = cmp.mapping({
+            i = function(fallback)
+              if cmp.visible() and cmp.get_active_entry() then
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+              else
+                fallback()
+              end
+            end,
+            s = cmp.mapping.confirm({ select = true }),
+            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+          }),
           ["<C-Space>"] = cmp.mapping.complete(),
         }),
         sources = cmp.config.sources({
